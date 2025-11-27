@@ -1,0 +1,16 @@
+# File Sensitif dan Lingkungan
+*.env
+*.sqlite3
+/venv/
+__pycache__/
+
+# Django
+*.log
+*.pot
+*.pyc
+/staticfiles/
+/media/
+
+# IDE files (opsional)
+.vscode/
+.idea/
