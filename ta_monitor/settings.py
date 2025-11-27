@@ -29,7 +29,12 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.herokuapp.com', # Mengizinkan semua subdomain heroku Anda
+    'app-ta-monitor-36d9d33b66b1.herokuapp.com', # Domain spesifik Anda
+    '127.0.0.1', # Untuk testing lokal (opsional)
+    'localhost', # Untuk testing lokal (opsional)
+]
 
 AUTH_USER_MODEL = 'users.User'
 # Application definition
