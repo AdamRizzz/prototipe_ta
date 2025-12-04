@@ -16,6 +16,7 @@ import dj_database_url
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -119,6 +120,7 @@ WSGI_APPLICATION = 'ta_monitor.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
+        # Pastikan ini membaca variabel environment Heroku, atau default ke SQLite HANYA jika tidak ditemukan
         default=config('DATABASE_URL', default='sqlite:///db.sqlite3'),
         conn_max_age=600
     )
@@ -198,3 +200,16 @@ REST_AUTH = {
     'USE_JWT': False, # Kita gunakan Token (lebih sederhana)
     'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer', # Akan kita buat
 }
+
+ACCOUNT_EMAIL_VERIFICATION = 'none' # Menonaktifkan verifikasi email yang kompleks
+ACCOUNT_AUTHENTICATION_METHOD = 'Adam' # Atau 'email'
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_UNIQUE_EMAIL = True
+
+CORS_ALLOWED_ORIGINS = [
+    # Izinkan Vercel frontend Anda
+    "https://ta-monitor-ui.vercel.app", 
+    
+    # Izinkan testing lokal
+    "http://localhost:5173", 
+]
